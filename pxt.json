@@ -1,0 +1,14 @@
+{
+  "name": "ambar-serial",
+  "version": "0.0.1",
+  "description": "Calliope mini Erweiterung für AMBAR Soundbox (serielle Kommunikation)",
+  "license": "MIT",
+  "dependencies": {
+    "core": "*"
+  },
+  "files": [
+    "main.ts",
+    "README.md"
+  ],
+  "public": true
+}

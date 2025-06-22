@@ -5,7 +5,7 @@ namespace AMBAR {
      * @param channel der Kanal (A-E) über den gesendet wird
      */
     //% block="sende Zahl %value an Kanal %channel"
-    //% channel.defl=Channel.A
+    //% value.min=0 value.max=1000
     //% color=#cd7f32 weight=100
     export function sendNumber(value: number, channel: Channel): void {
         serial.setBaudRate(BaudRate.BaudRate57600)  // Baudrate auf 57600 setzen:contentReference[oaicite:0]{index=0}
@@ -19,8 +19,9 @@ namespace AMBAR {
      * @param handler Funktion, die bei Empfang einer Zahl aufgerufen wird
      */
     //% block="wenn serielle Zahl von AMBAR empfangen"
-    //% draggableParameters="reporter" color=#cd7f32 weight=90
-    export function onSerialReceived(handler: (receivedNumber: number) => void): void {
+    //% draggableParameters="reporter"
+    //% color=#cd7f32 weight=90
+    export function onSerialReceived(handler: (value: number) => void): void {
         serial.setBaudRate(BaudRate.BaudRate57600)  // sicherstellen, dass Baudrate stimmt
         serial.onDataReceived("e", function () {
             let raw = serial.readUntil("e")  // liest bis zum Terminator 'e'
@@ -44,16 +45,16 @@ namespace AMBAR {
     /**
      * Aufzählungstyp für die Kanäle A-E
      */
-    enum Channel {
-        //% block="A"
-        A = 0,
-        //% block="B"
-        B = 1,
-        //% block="C"
-        C = 2,
-        //% block="D"
-        D = 3,
-        //% block="E"
-        E = 4
+    export enum Channel {
+      //% block="A"
+      A,
+      //% block="B"
+      B,
+      //% block="C"
+      C,
+      //% block="D"
+      D,
+      //% block="E"
+      E
     }
 }
